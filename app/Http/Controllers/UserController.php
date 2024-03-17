@@ -12,7 +12,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return 'allah';
+        $users = User::paginate();
+        return response()->json([
+            'data' => $users
+        ]); 
     }
 
     /**
@@ -28,7 +31,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return response()->json([
+            'data'=>$user
+        ]);
     }
 
     /**
