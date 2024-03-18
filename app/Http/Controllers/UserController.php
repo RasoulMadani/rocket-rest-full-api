@@ -12,7 +12,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate();
+        $users = User::whereEmail(request()->get('email'))->paginate();
         return response()->json([
             'data' => $users
         ]); 
