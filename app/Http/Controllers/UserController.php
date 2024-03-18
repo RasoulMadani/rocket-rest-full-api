@@ -29,27 +29,34 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'first_name' => ['required', 'string', 'min:1', 'max:255'],
-                'last_name' => ['required', 'string', 'min:1', 'max:255'],
-                'email' => ['required', 'email', 'unique:users,email'],
-                'password' => ['required', 'string', 'min:8', 'max:255'],
-            ]
-        );
-        if ($validator->fails())
-            return response()->json([
-                'errors' => $validator->errors()
-            ], 422);
-        
-        $inputs = $validator->validated();
-        $inputs['password'] = Hash::make($inputs['password']);
+        try {
+            $validator = Validator::makee(
+                $request->all(),
+                [
+                    'first_name' => ['required', 'string', 'min:1', 'max:255'],
+                    'last_name' => ['required', 'string', 'min:1', 'max:255'],
+                    'email' => ['required', 'email', 'unique:users,email'],
+                    'password' => ['required', 'string', 'min:8', 'max:255'],
+                ]
+            );
+            if ($validator->fails())
+                return response()->json([
+                    'errors' => $validator->errors()
+                ], 422);
 
-         
-        $user = User::create(
-            $inputs 
-        );
+            $inputs = $validator->validated();
+            $inputs['password'] = Hash::make($inputs['password']);
+
+
+            $user = User::create(
+                $inputs
+            );
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'something went wrong'
+            ],500);
+        }
+
 
         return response()->json([
             'message' => 'User created successfully',
