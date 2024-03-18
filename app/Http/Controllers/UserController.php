@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -30,7 +31,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         try {
-            $validator = Validator::makee(
+            $validator = Validator::make(
                 $request->all(),
                 [
                     'first_name' => ['required', 'string', 'min:1', 'max:255'],
@@ -52,6 +53,9 @@ class UserController extends Controller
                 $inputs
             );
         } catch (\Throwable $th) {
+            // دریافت خطا در تلسکوپ
+            app()[ExceptionHandler::class]->report($th);
+             
             return response()->json([
                 'message' => 'something went wrong'
             ],500);
