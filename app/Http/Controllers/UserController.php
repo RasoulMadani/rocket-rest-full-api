@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -39,8 +40,21 @@ class UserController extends Controller
         );
         if ($validator->fails())
             return response()->json([
-                'errors' => $validator->errors() 
-            ],422);
+                'errors' => $validator->errors()
+            ], 422);
+        
+        $inputs = $validator->validated();
+        $inputs['password'] = Hash::make($inputs['password']);
+
+         
+        $user = User::create(
+            $inputs 
+        );
+
+        return response()->json([
+            'message' => 'User created successfully',
+            'user' => $user
+        ]);
     }
 
     /**
