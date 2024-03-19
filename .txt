@@ -11,3 +11,8 @@ php artisan make:model -m
  php artisan make:seeder ArticleSeeder
  php artisan db:seed --class=ArticleSeeder
  php artisan make:controller ArticleController --api
+
+  php artisan make:resource Admin/User/UsersListApiResource
+   php artisan make:resource Admin/User/UsersDetailsApiResource
+   php artisan make:resource Admin/Article/ArticleListsApiResource
+   php artisan make:resource Admin/Article/ArticleAuthorApiResource

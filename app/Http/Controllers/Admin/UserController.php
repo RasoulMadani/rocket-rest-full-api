@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Admin\User\UsersDetailsApiResource;
+use App\Http\Resources\Admin\User\UsersListApiResource;
 use App\Models\User;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Http\Request;
@@ -22,9 +24,7 @@ class UserController extends Controller
             $usersQuery = $usersQuery->whereEmail(request()->email);
 
         $users = $usersQuery->paginate();
-        return response()->json([
-            'data' => $users
-        ]);
+        return UsersListApiResource::collection($users);
     }
 
     /**
@@ -75,9 +75,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return response()->json([
-            'data' => $user
-        ]);
+        return new UsersDetailsApiResource($user);
     }
 
     /**
