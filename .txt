@@ -3,4 +3,11 @@ php artisan make:controller UserController  --api --model=User
 
 https://validationforlaravel.com/
 
- 
+
+create model with migration
+php artisan make:model -m
+
+ php artisan make:factory ArticleFactory
+ php artisan make:seeder ArticleSeeder
+ php artisan db:seed --class=ArticleSeeder
+ php artisan make:controller ArticleController --api
