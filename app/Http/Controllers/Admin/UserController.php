@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Controlresponse\Response1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\User\UsersDetailsApiResource;
 use App\Http\Resources\Admin\User\UsersListApiResource;
@@ -32,6 +33,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
+
         try {
             $validator = Validator::make(
                 $request->all(),
@@ -59,10 +62,17 @@ class UserController extends Controller
             app()[ExceptionHandler::class]->report($th);
 
             return $this->apiResponse(message:'something went wrong',status:500);
+
+          
         }
 
 
-        return $this->apiResponse(message:'User created successfully',data:$user);
+        // return $this->apiResponse(message:'User created successfully',data:$user);
+        $response1 = new Response1();
+        $response1->setMessage('User created successfully'); 
+        $response1->setData($user);
+        return $response1->response2();
+        
     }
 
     /**
@@ -137,12 +147,5 @@ class UserController extends Controller
             'message' => 'User deleted successfully'
         ]);
     }
-    private function apiResponse($message = null, $data = null, $status = 200)
-    {
-        $body = [];
-        !is_null($message) && $body['message'] = $message;
-        !is_null($data) && $body['data'] = $data;
-
-        return response()->json($body,$status);
-    }
+   
 }
