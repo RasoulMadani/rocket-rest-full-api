@@ -57,17 +57,12 @@ class UserController extends Controller
         } catch (\Throwable $th) {
             // دریافت خطا در تلسکوپ
             app()[ExceptionHandler::class]->report($th);
-             
-            return response()->json([
-                'message' => 'something went wrong'
-            ],500);
+
+            return $this->apiResponse(message:'something went wrong',status:500);
         }
 
 
-        return response()->json([
-            'message' => 'User created successfully',
-            'user' => $user
-        ]);
+        return $this->apiResponse(message:'User created successfully',data:$user);
     }
 
     /**
@@ -90,7 +85,7 @@ class UserController extends Controller
                     'first_name' => ['required', 'string', 'min:1', 'max:255'],
                     'last_name' => ['required', 'string', 'min:1', 'max:255'],
                     // در اینجا می گوییم که برای به روزرسانی یکتا بودن کاربر فعلی رو بررسی نکن
-                    'email' => ['required', 'email', Rule::unique('users','email')->ignore($user->id)],
+                    'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($user->id)],
                     'password' => ['nullable', 'string', 'min:8', 'max:255'],
                 ]
             );
@@ -100,19 +95,18 @@ class UserController extends Controller
                 ], 422);
 
             $inputs = $validator->validated();
-            if(isset($inputs['password']))
+            if (isset($inputs['password']))
                 $inputs['password'] = Hash::make($inputs['password']);
 
 
-            $user->update($inputs); 
-
+            $user->update($inputs);
         } catch (\Throwable $th) {
             // دریافت خطا در تلسکوپ
             app()[ExceptionHandler::class]->report($th);
-             
+
             return response()->json([
                 'message' => 'something went wrong'
-            ],500);
+            ], 500);
         }
 
 
@@ -126,21 +120,29 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(User $user)
-    { 
+    {
         try {
-            $user->delete(); 
+            $user->delete();
         } catch (\Throwable $th) {
             // دریافت خطا در تلسکوپ
             app()[ExceptionHandler::class]->report($th);
-             
+
             return response()->json([
                 'message' => 'something went wrong'
-            ],500);
+            ], 500);
         }
 
 
         return response()->json([
             'message' => 'User deleted successfully'
         ]);
+    }
+    private function apiResponse($message = null, $data = null, $status = 200)
+    {
+        $body = [];
+        !is_null($message) && $body['message'] = $message;
+        !is_null($data) && $body['data'] = $data;
+
+        return response()->json($body,$status);
     }
 }
