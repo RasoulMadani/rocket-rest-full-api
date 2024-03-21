@@ -18,7 +18,7 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    
+
     private UserService $service;
 
     public function __construct(UserService $userService){
@@ -62,10 +62,10 @@ class UserController extends Controller
             $result = $this->service->registerUser($validator->validated());
 
 
-            if(!$result['ok'])
+            if(!$result->ok)
                 return ApiResponse::withMessage('something went wrong')->withStatus(500)->build()->response2();   
 
-            return ApiResponse::withMessage('User created successfully')->withData($result['data'])->build()->response2();
+            return ApiResponse::withMessage('User created successfully')->withData($result->data)->build()->response2();
         
     }
 
