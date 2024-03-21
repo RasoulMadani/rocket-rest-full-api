@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Controlresponse\ApiResponseBuilder;
 use App\Controlresponse\Response1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\User\UsersDetailsApiResource;
@@ -61,20 +62,13 @@ class UserController extends Controller
             // دریافت خطا در تلسکوپ
             app()[ExceptionHandler::class]->report($th);
 
-            return $this->apiResponse(message:'something went wrong',status:500);
-
-          
+            return (new ApiResponseBuilder())->withMessage('something went wrong')->withStatus(500)->build()->response2();   
         }
 
 
         // return $this->apiResponse(message:'User created successfully',data:$user);
-        $response1 = new Response1();
-        $response1->setMessage('User created successfully'); 
-        $response1->setData($user);
-        $response1->setAppends([
-            'allah'=>'allah'
-        ]);
-        return $response1->response2();
+        $response1 = new ApiResponseBuilder();
+        return (new ApiResponseBuilder())->withMessage('User created successfully')->withData($user)->build()->response2();
         
     }
 
