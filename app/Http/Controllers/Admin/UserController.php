@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\User\UsersDetailsApiResource;
 use App\Http\Resources\Admin\User\UsersListApiResource;
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -17,6 +18,14 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+    
+    private UserService $service;
+
+    public function __construct(UserService $userService){
+        $this->service = $userService; 
+    }
+
+    
     /**
      * Display a listing of the resource.
      */
@@ -36,8 +45,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-
-        try {
             $validator = Validator::make(
                 $request->all(),
                 [
@@ -52,20 +59,13 @@ class UserController extends Controller
                     'errors' => $validator->errors()
                 ], 422);
 
-            $inputs = $validator->validated();
-            $inputs['password'] = Hash::make($inputs['password']);
+            $result = $this->service->registerUser($validator->validated());
 
 
-            $user = User::create(
-                $inputs
-            );
-        } catch (\Throwable $th) {
-            // دریافت خطا در تلسکوپ
-            app()[ExceptionHandler::class]->report($th);
+            if(!$result['ok'])
+                return ApiResponse::withMessage('something went wrong')->withStatus(500)->build()->response2();   
 
-            return ApiResponse::withMessage('something went wrong')->withStatus(500)->build()->response2();   
-        }
-        return ApiResponse::withMessage('User created successfully')->withData($user)->build()->response2();
+            return ApiResponse::withMessage('User created successfully')->withData($result['data'])->build()->response2();
         
     }
 
