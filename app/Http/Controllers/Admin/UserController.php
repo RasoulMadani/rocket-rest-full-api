@@ -6,6 +6,7 @@ use App\Controlresponse\ApiResponseBuilder;
 use App\Controlresponse\Facades\ApiResponse;
 use App\Controlresponse\Response1;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\User\UserStoreRequest;
 use App\Http\Resources\Admin\User\UsersDetailsApiResource;
 use App\Http\Resources\Admin\User\UsersListApiResource;
 use App\Models\User;
@@ -42,16 +43,13 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
 
             $validator = Validator::make(
                 $request->all(),
                 [
-                    'first_name' => ['required', 'string', 'min:1', 'max:255'],
-                    'last_name' => ['required', 'string', 'min:1', 'max:255'],
-                    'email' => ['required', 'email', 'unique:users,email'],
-                    'password' => ['required', 'string', 'min:8', 'max:255'],
+                    
                 ]
             );
             if ($validator->fails())
