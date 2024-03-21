@@ -16,3 +16,6 @@ php artisan make:model -m
    php artisan make:resource Admin/User/UsersDetailsApiResource
    php artisan make:resource Admin/Article/ArticleListsApiResource
    php artisan make:resource Admin/Article/ArticleAuthorApiResource
+
+
+php artisan make:provider RestfulApiServiceProvider
