@@ -71,6 +71,9 @@ class UserController extends Controller
         $response1 = new Response1();
         $response1->setMessage('User created successfully'); 
         $response1->setData($user);
+        $response1->setAppends([
+            'allah'=>'allah'
+        ]);
         return $response1->response2();
         
     }
