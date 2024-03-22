@@ -23,3 +23,7 @@ php artisan make:provider RestfulApiServiceProvider
 
 
 php artisan make:request Admin/User/UserStoreRequest
+
+php artisan make:command ApiRequestMakeCommand
+
+php artisan make:apiRequest Admin/User/UserStoreApiRequest
