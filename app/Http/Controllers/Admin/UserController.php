@@ -10,6 +10,7 @@ use App\Http\ApiRequests\Admin\User\UserUpdateApiRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\User\UsersDetailsApiResource;
 use App\Http\Resources\Admin\User\UsersListApiResource;
+use App\Http\Resources\UsersListApiResourceCollection;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Contracts\Debug\ExceptionHandler;
@@ -44,7 +45,7 @@ class UserController extends Controller
          * ->resource
          * را بعد از کالکشن بزنیم باعث می شود داده های مربوط به صفحه بندی را هم برگرداند
          */
-        return ApiResponse::withData(UsersListApiResource::collection($result->data)->resource)->build()->response2();
+        return ApiResponse::withData(new UsersListApiResourceCollection($result->data))->build()->response2();
     }
 
     /**

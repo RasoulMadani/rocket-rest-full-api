@@ -29,3 +29,6 @@ php artisan make:command ApiRequestMakeCommand
 php artisan make:apiRequest Admin/User/UserStoreApiRequest
 
 php artisan make:apiRequest Admin/User/UserUpdateApiRequest
+
+
+php artisan make:resource UsersListApiResourceCollection --collection
