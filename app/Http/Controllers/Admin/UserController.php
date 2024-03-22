@@ -32,14 +32,20 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $usersQuery = User::query();
-        if (request()->has('email'))
-            $usersQuery = $usersQuery->whereEmail(request()->email);
+        $result = $this->service->getAllUsers($request->all);
 
-        $users = $usersQuery->paginate();
-        return UsersListApiResource::collection($users);
+
+        if (!$result->ok)
+            return ApiResponse::withMessage('something went wrong')->withStatus(500)->build()->response2();
+        /**
+         * اگر 
+         * ->resource
+         * را بعد از کالکشن بزنیم باعث می شود داده های مربوط به صفحه بندی را هم برگرداند
+         */
+        return ApiResponse::withData(UsersListApiResource::collection($result->data)->resource)->build()->response2();
+   
     }
 
     /**
