@@ -22,11 +22,12 @@ class UserController extends Controller
 
     private UserService $service;
 
-    public function __construct(UserService $userService){
-        $this->service = $userService; 
+    public function __construct(UserService $userService)
+    {
+        $this->service = $userService;
     }
 
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -46,25 +47,13 @@ class UserController extends Controller
     public function store(UserStoreRequest $request)
     {
 
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    
-                ]
-            );
-            if ($validator->fails())
-                return response()->json([
-                    'errors' => $validator->errors()
-                ], 422);
-
-            $result = $this->service->registerUser($validator->validated());
+        $result = $this->service->registerUser($request->validated());
 
 
-            if(!$result->ok)
-                return ApiResponse::withMessage('something went wrong')->withStatus(500)->build()->response2();   
+        if (!$result->ok)
+            return ApiResponse::withMessage('something went wrong')->withStatus(500)->build()->response2();
 
-            return ApiResponse::withMessage('User created successfully')->withData($result->data)->build()->response2();
-        
+        return ApiResponse::withMessage('User created successfully')->withData($result->data)->build()->response2();
     }
 
     /**
@@ -139,5 +128,4 @@ class UserController extends Controller
             'message' => 'User deleted successfully'
         ]);
     }
-   
 }
