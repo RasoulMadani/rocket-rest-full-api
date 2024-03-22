@@ -45,7 +45,6 @@ class UserController extends Controller
          * را بعد از کالکشن بزنیم باعث می شود داده های مربوط به صفحه بندی را هم برگرداند
          */
         return ApiResponse::withData(UsersListApiResource::collection($result->data)->resource)->build()->response2();
-   
     }
 
     /**
@@ -79,7 +78,6 @@ class UserController extends Controller
          * را بعد از کالکشن بزنیم باعث می شود داده های مربوط به صفحه بندی را هم برگرداند
          */
         return ApiResponse::withData(new UsersDetailsApiResource($result->data))->build()->response2();
-
     }
 
     /**
@@ -87,28 +85,13 @@ class UserController extends Controller
      */
     public function update(UserUpdateApiRequest $request, User $user)
     {
-        try {
-
-            $inputs = $request->validated();
-            if (isset($inputs['password']))
-                $inputs['password'] = Hash::make($inputs['password']);
+        $result = $this->service->updateUser($request->validated(), $user);
 
 
-            $user->update($inputs);
-        } catch (\Throwable $th) {
-            // دریافت خطا در تلسکوپ
-            app()[ExceptionHandler::class]->report($th);
+        if (!$result->ok)
+            return ApiResponse::withMessage('something went wrong')->withStatus(500)->build()->response2();
 
-            return response()->json([
-                'message' => 'something went wrong'
-            ], 500);
-        }
-
-
-        return response()->json([
-            'message' => 'User updated successfully',
-            'user' => $user
-        ]);
+        return ApiResponse::withMessage('User updated successfully')->withData($result->data)->build()->response2();
     }
 
     /**
