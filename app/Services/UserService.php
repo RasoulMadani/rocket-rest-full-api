@@ -15,6 +15,12 @@ class UserService
             return User::paginate();
         });
     }
+    public function getUserInfo(User $user):ServiceResult
+    {
+        return app(ServiceWrapper::class)(function () use ($user){
+            return $user;
+        });
+    }
     public function registerUser(array $inputs):ServiceResult
     {
         return app(ServiceWrapper::class)(function () use ($inputs){

@@ -68,7 +68,18 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return new UsersDetailsApiResource($user);
+        $result = $this->service->getUserInfo($user);
+
+
+        if (!$result->ok)
+            return ApiResponse::withMessage('something went wrong')->withStatus(500)->build()->response2();
+        /**
+         * اگر 
+         * ->resource
+         * را بعد از کالکشن بزنیم باعث می شود داده های مربوط به صفحه بندی را هم برگرداند
+         */
+        return ApiResponse::withData(new UsersDetailsApiResource($result->data))->build()->response2();
+
     }
 
     /**
