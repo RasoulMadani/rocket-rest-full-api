@@ -99,20 +99,11 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        try {
-            $user->delete();
-        } catch (\Throwable $th) {
-            // دریافت خطا در تلسکوپ
-            app()[ExceptionHandler::class]->report($th);
+        $result = $this->service->deleteUser($user);
 
-            return response()->json([
-                'message' => 'something went wrong'
-            ], 500);
-        }
+        if (!$result->ok)
+            return ApiResponse::withMessage('something went wrong')->withStatus(500)->build()->response2();
 
-
-        return response()->json([
-            'message' => 'User deleted successfully'
-        ]);
+        return ApiResponse::withMessage('User deleted successfully')->build()->response2();
     }
 }

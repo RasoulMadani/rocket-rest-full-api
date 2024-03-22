@@ -42,4 +42,11 @@ class UserService
             return $user;
         });
     }
+
+    public function deleteUser(User $user): ServiceResult
+    {
+        return app(ServiceWrapper::class)(function () use ($user) {
+            return $user->delete();
+        });
+    }
 }
