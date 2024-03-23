@@ -22,5 +22,13 @@
         "workspaceRoot": "/Users/safeAllah/Documents/laravel-project/rocket-rest-full-api1",
         "workspacePath": "app/Models",
         "id": "09iwFBqLGO6opxve"
+    },
+    {
+        "type": "File",
+        "name": "/Users/safeAllah/Documents/laravel-project/rocket-rest-full-api1/.txt",
+        "parent_id": null,
+        "workspaceRoot": "/Users/safeAllah/Documents/laravel-project/rocket-rest-full-api1",
+        "workspacePath": ".txt",
+        "id": "c4OpbBDMtFhglo3S"
     }
 ]
