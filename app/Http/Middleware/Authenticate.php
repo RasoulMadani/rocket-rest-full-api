@@ -14,4 +14,13 @@ class Authenticate extends Middleware
     {
         return $request->expectsJson() ? null : route('login');
     }
+    // شخصی سازی متد اوتنتیکیت سنتکام با باز نویسی این متد 
+    // حتما باید از ابورت و یا اکسپشن در این متد استفاده کنیم تا برنامه بیاید بیرون
+    // و الا جلوگیری نخواهد کرد 
+    protected function unauthenticated($request, array $guards)
+    {
+        abort(response()->json([
+            'message' => 'allah'
+        ]));
+    }
 }

@@ -6,6 +6,9 @@ use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::post('login',LoginController::class);
-Route::apiResource('user',UserController::class);
-Route::apiResource('article',ArticleController::class)->only('index');
+Route::post('login', LoginController::class);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('user', UserController::class);
+    Route::apiResource('article', ArticleController::class)->only('index');
+});
