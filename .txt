@@ -32,3 +32,10 @@ php artisan make:apiRequest Admin/User/UserUpdateApiRequest
 
 
 php artisan make:resource UsersListApiResourceCollection --collection
+
+php artisan migrate:fresh --seed
+
+php artisan make:controller Admin/LoginController
+
+
+ php artisan make:apiRequest Admin/Auth/LoginApiRequest
