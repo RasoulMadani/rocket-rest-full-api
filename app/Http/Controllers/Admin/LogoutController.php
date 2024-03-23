@@ -10,7 +10,7 @@ class LogoutController extends Controller
 {
     public function __invoke()
     {
-        auth()->user()->tokens()->delete();
+        auth()->user()->currentAccessToken()->delete();
         return ApiResponse::withMessage('logout successfully')->build()->response2();
     }
 }
