@@ -30,5 +30,13 @@
         "workspaceRoot": "/Users/safeAllah/Documents/laravel-project/rocket-rest-full-api1",
         "workspacePath": ".txt",
         "id": "c4OpbBDMtFhglo3S"
+    },
+    {
+        "type": "File",
+        "name": "/Users/safeAllah/Documents/laravel-project/rocket-rest-full-api1/app/Providers/AuthServiceProvider.php",
+        "parent_id": null,
+        "workspaceRoot": "/Users/safeAllah/Documents/laravel-project/rocket-rest-full-api1",
+        "workspacePath": "app/Providers/AuthServiceProvider.php",
+        "id": "2epL1w9QyUS5jsfP"
     }
 ]

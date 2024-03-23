@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -35,6 +36,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        if(!Gate::allows('test'))
+            abort(403);
         $result = $this->service->getAllUsers($request->all);
 
 
