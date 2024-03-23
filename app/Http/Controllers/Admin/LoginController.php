@@ -14,7 +14,7 @@ class LoginController extends Controller
             // __('auth.failed') این قسمت می ره از فایل های زبان لاراول متن مربوط به این قسمت را می آورد
             return ApiResponse::withMessage(__('auth.failed'))->withStatus(401)->build()->response2();
         $user = auth()->user();
-        $token = $user->createToken('API TOKEN')->plainTextToken;
+        $token = $user->createToken($request->header('User-Agent'))->plainTextToken;
 
         return ApiResponse::withAppends([
             'name'=> $user->full_name,
