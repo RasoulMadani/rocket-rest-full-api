@@ -39,3 +39,5 @@ php artisan make:controller Admin/LoginController
 
 
  php artisan make:apiRequest Admin/Auth/LoginApiRequest
+
+ php artisan make:controller Admin/GetCurrentUserController

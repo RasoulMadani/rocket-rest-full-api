@@ -1,0 +1,26 @@
+[
+    {
+        "type": "Directory",
+        "name": "/Users/safeAllah/Documents/laravel-project/rocket-rest-full-api1/routes",
+        "parent_id": null,
+        "workspaceRoot": "/Users/safeAllah/Documents/laravel-project/rocket-rest-full-api1",
+        "workspacePath": "routes",
+        "id": "pIxBnGRH2JdOELy5"
+    },
+    {
+        "type": "Directory",
+        "name": "/Users/safeAllah/Documents/laravel-project/rocket-rest-full-api1/app/Http",
+        "parent_id": null,
+        "workspaceRoot": "/Users/safeAllah/Documents/laravel-project/rocket-rest-full-api1",
+        "workspacePath": "app/Http",
+        "id": "Pi2q6ReU7fbBLKX9"
+    },
+    {
+        "type": "Directory",
+        "name": "/Users/safeAllah/Documents/laravel-project/rocket-rest-full-api1/app/Models",
+        "parent_id": null,
+        "workspaceRoot": "/Users/safeAllah/Documents/laravel-project/rocket-rest-full-api1",
+        "workspacePath": "app/Models",
+        "id": "09iwFBqLGO6opxve"
+    }
+]
