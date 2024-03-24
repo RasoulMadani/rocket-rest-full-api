@@ -56,3 +56,8 @@ php artisan make:controller Admin/LoginController
  php artisan make:factory PermissionFactory
 
  php artisan db:seed --class=PermissionSeeder
+
+ php artisan make:factory RoleFactory
+ php artisan make:seeder RoleSeeder
+
+ php artisan db:seed --class=RoleSeeder
