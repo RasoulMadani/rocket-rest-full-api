@@ -50,3 +50,9 @@ php artisan make:controller Admin/LoginController
  php artisan make:model Permission
  php artisan make:model Role
  php artisan migrate:fresh --seed
+
+ php artisan make:seeder PermissionSeeder
+
+ php artisan make:factory PermissionFactory
+
+ php artisan db:seed --class=PermissionSeeder
