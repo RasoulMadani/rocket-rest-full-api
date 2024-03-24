@@ -43,3 +43,10 @@ php artisan make:controller Admin/LoginController
  php artisan make:controller Admin/GetCurrentUserController
 
  php artisan make:controller Admin/LogoutController
+
+
+ php artisan make:migration create_access_level_tables
+
+ php artisan make:model Permission
+ php artisan make:model Role
+ php artisan migrate:fresh --seed
