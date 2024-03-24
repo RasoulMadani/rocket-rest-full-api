@@ -63,3 +63,14 @@ php artisan make:controller Admin/LoginController
  php artisan db:seed --class=RoleSeeder
 
  php artisan migrate:fresh --seed 
+
+ php artisan make:seeder RoleUserSeeder
+
+ php artisan db:seed --class=RoleUserSeeder
+
+ /**
+  * در حالت محصول به جای اینکه اطلاعات ادمین اصلی رو داخل 
+  سیدر بگذاریم باید نقش ها و سطح دسترسی را با سیدر بسازیم و 
+  با ساخت یک کامند لاین لاراولی که اطلاعات کاربر را از ما می گیرد 
+  و یک کاربر ایجاد می کند  و بعد آن کاربر را به عنوان 
+  نقش اصلی قرار می دهد استفاده کنیم و این کامند رو خودمان بسازیم 
