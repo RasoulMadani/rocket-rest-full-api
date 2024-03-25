@@ -46,5 +46,13 @@
         "workspaceRoot": "/Users/safeAllah/Documents/laravel-project/rocket-rest-full-api1",
         "workspacePath": "database",
         "id": "YUxGCIwtBZ9kc2bV"
+    },
+    {
+        "type": "Directory",
+        "name": "/Users/safeAllah/Documents/laravel-project/rocket-rest-full-api1/app/Services",
+        "parent_id": null,
+        "workspaceRoot": "/Users/safeAllah/Documents/laravel-project/rocket-rest-full-api1",
+        "workspacePath": "app/Services",
+        "id": "7i2hst0LIMkYamNc"
     }
 ]

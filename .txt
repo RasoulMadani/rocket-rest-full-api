@@ -80,3 +80,8 @@ php artisan make:controller Admin/LoginController
   php artisan make:apiRequest Admin/User/UserIndexApiRequest
   php artisan make:apiRequest Admin/User/UserShowApiRequest
   php artisan make:apiRequest Admin/User/UserDeleteApiRequest
+
+  php artisan make:controller Admin/RoleController --api
+
+  php artisan make:apiRequest Admin/Role/RoleStoreApiRequest
+  php artisan make:apiRequest Admin/Role/RoleUpdateApiRequest
