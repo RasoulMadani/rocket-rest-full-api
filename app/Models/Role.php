@@ -9,12 +9,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Role extends Model
 {
-    use HasFactory, SoftDeletes,HasRules;
+    use HasFactory, SoftDeletes, HasRules;
     protected $guarded = [];
 
     protected static $rules = [
         'name'=> 'required|string|unique:roles,name',
-        'display_name' => 'required|string'
+        'display_name' => 'required|string',
+        'permissions' => 'required|array',
+        //در اینجا یک شرط برای تک تک اعضای پرمیزن قرار می دهیم تا حتما در جدول پرمیزن موجود باشند
+        'permissions.*' => 'exists:permissions,id'
     ];
     public function permissions()
     {
