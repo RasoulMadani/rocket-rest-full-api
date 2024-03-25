@@ -85,3 +85,7 @@ php artisan make:controller Admin/LoginController
 
   php artisan make:apiRequest Admin/Role/RoleStoreApiRequest
   php artisan make:apiRequest Admin/Role/RoleUpdateApiRequest
+
+  php artisan make:controller Admin/AssignRolesToUserController
+
+  php artisan make:apiRequest Admin/AccessLevel/AssingRolesToUserApiRequest
