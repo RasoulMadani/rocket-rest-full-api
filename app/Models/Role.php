@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Role extends Model
 {
     use HasFactory, SoftDeletes,HasRules;
+    protected $guarded = [];
 
     protected static $rules = [
         'name'=> 'required|string|unique:roles,name',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Controlresponse\Facades\ApiResponse;
 use App\Http\ApiRequests\Admin\Role\RoleStoreApiRequest;
 use App\Http\ApiRequests\Admin\Role\RoleUpdateApiRequest;
 use App\Http\Controllers\Controller;
@@ -28,7 +29,13 @@ class RoleController extends Controller
      */
     public function store(RoleStoreApiRequest $request)
     {
-        //
+        $result = $this->roleService->addNewRole($request->validated());
+
+
+        if (!$result->ok)
+            return ApiResponse::withMessage('something went wrong')->withStatus(500)->build()->response2();
+
+        return ApiResponse::withMessage('Role created successfully')->withData($result->data)->build()->response2();
     }
 
     /**
@@ -44,7 +51,13 @@ class RoleController extends Controller
      */
     public function update(RoleUpdateApiRequest $request, Role $role)
     {
-        //
+        $result = $this->roleService->updateRole($request->validated(),$role);
+
+
+        if (!$result->ok)
+            return ApiResponse::withMessage('something went wrong')->withStatus(500)->build()->response2();
+
+        return ApiResponse::withMessage('Role updated successfully')->withData($result->data)->build()->response2();
     }
 
     /**
