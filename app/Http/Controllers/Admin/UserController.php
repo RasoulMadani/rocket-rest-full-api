@@ -36,8 +36,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        if(!Gate::allows('test'))
-            abort(403);
+        // if(!Gate::allows('test'))
+        //     abort(403);
         $result = $this->service->getAllUsers($request->all);
 
 

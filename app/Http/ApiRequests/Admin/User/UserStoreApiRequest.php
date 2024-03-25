@@ -13,7 +13,7 @@ class UserStoreApiRequest extends ApiFormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('test');
+        return Gate::allows('create_user');
     }
 
     /**

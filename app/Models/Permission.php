@@ -21,4 +21,8 @@ class Permission extends Model
             Role::whereName('admin')->first()->permissions()->attach([$permission->id]);
         });
     }
+
+    public function roles(){
+        return $this->belongsToMany(Role::class);
+    }
 }

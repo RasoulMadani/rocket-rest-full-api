@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+
+use App\Models\Permission;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -22,8 +24,11 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('test',function($user){
-            return $user->email === 'admin@gmail.com';
+        Permission::with('roles')->each(function ($permission) {
+            Gate::define($permission->name, function ($user) use ($permission) {
+                // !! این علامت خروجی رو به بولی تبدیل می کند
+                return !!$permission->roles->intersect($user->roles)->count();
+            });
         });
     }
 }
