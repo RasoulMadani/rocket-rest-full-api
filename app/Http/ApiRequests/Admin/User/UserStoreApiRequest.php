@@ -25,4 +25,9 @@ class UserStoreApiRequest extends ApiFormRequest
     {
         return User::rules();
     }
+    public function messages(){
+        return [
+            'email.required' => 'ایمیل ضروری است'
+        ];
+    }
 }
