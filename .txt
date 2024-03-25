@@ -89,3 +89,6 @@ php artisan make:controller Admin/LoginController
   php artisan make:controller Admin/AssignRolesToUserController
 
   php artisan make:apiRequest Admin/AccessLevel/AssingRolesToUserApiRequest
+
+  composer require --dev laravel-lang/common
+  php artisan lang:update
