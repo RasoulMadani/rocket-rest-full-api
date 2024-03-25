@@ -24,6 +24,11 @@ return new class extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('no action');
+
+            // جون در این جدول آیدی نداریم به جای آن این دو فیلد رو پرایمری می کنیم تا
+            // همزمان دو تا فیلد با مقدار یکسان نداشته باشیم یعنی حتما این ورودی مشابه نداشته باشد
+
+            $table->primary(['user_id', 'role_id']);
         });
         Schema::create('permissions', function (Blueprint $table) {
             $table->id();
@@ -38,6 +43,11 @@ return new class extends Migration
 
             $table->foreign('permission_id')->references('id')->on('permissions')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('no action');
+
+            // جون در این جدول آیدی نداریم به جای آن این دو فیلد رو پرایمری می کنیم تا
+            // همزمان دو تا فیلد با مقدار یکسان نداشته باشیم یعنی حتما این ورودی مشابه نداشته باشد
+            
+            $table->primary(['role_id', 'permission_id']);
         });
     }
 
