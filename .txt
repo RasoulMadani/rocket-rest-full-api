@@ -74,3 +74,9 @@ php artisan make:controller Admin/LoginController
   با ساخت یک کامند لاین لاراولی که اطلاعات کاربر را از ما می گیرد 
   و یک کاربر ایجاد می کند  و بعد آن کاربر را به عنوان 
   نقش اصلی قرار می دهد استفاده کنیم و این کامند رو خودمان بسازیم 
+
+
+
+  php artisan make:apiRequest Admin/User/UserIndexApiRequest
+  php artisan make:apiRequest Admin/User/UserShowApiRequest
+  php artisan make:apiRequest Admin/User/UserDeleteApiRequest
