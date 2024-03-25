@@ -3,6 +3,7 @@
 namespace App\Http\ApiRequests\Admin\Role;
 
 use App\Controlresponse\ApiFormRequest;
+use App\Models\Role;
 
 class RoleUpdateApiRequest extends ApiFormRequest
 {
@@ -21,8 +22,8 @@ class RoleUpdateApiRequest extends ApiFormRequest
      */
     public function rules(): array
     {
-        return [
-
-        ];
+        return Role::rules([
+            'name' => 'required|string|unique:roles,name,' . $this->role->id,
+        ]);
     }
 }

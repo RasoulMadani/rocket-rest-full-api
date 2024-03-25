@@ -3,6 +3,7 @@
 namespace App\Http\ApiRequests\Admin\Role;
 
 use App\Controlresponse\ApiFormRequest;
+use App\Models\Role;
 
 class RoleStoreApiRequest extends ApiFormRequest
 {
@@ -21,8 +22,6 @@ class RoleStoreApiRequest extends ApiFormRequest
      */
     public function rules(): array
     {
-        return [
-
-        ];
+        return Role::rules();
     }
 }
